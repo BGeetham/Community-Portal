@@ -11,33 +11,24 @@ class MassEmailUnitTest
         
     }
     
-    public function sendMail()
+    public function sendMail($emailRecipient)
     {
-        $formerror="";
-        $recipient;
+        
         $subject ;
         $message ;
         $email="";
-        //$UM=new UserManager();
-       // $users=$UM->getAllUsers();
         $selected=array();
         $subject="test";
         $message ="test";
         $recipients;
         $firstName="srini";
-        //$recipients = explode(',', $_POST['recipients']);
-        $emailRecipient="seenuboorla@gmail.com";
-        $recipients="seenuboorla@gmail.com";
-        //Proceed when $recipients is not empty
+        
+         $recipients="seenuboorla@gmail.com";
+      
         if($recipients) {
             $mail = new PHPMailer;
-            //Enable SMTP debugging.
-            //$mail->SMTPDebug = 3;
-            //Set PHPMailer to use SMTP.
             $mail->isSMTP();
-            //Set SMTP host name
             $mail->Host = "smtp.gmail.com";
-            //Set this to true if SMTP host requires authentication
             $mail->SMTPAuth = true;
             //Provide username and password
             $mail->Username = "geetha.abcportal@gmail.com";
@@ -49,12 +40,9 @@ class MassEmailUnitTest
             $mail->Port = 25;
             $mail->From = "geetha.abcportal@gmail.com";
             $mail->FromName = "Admin";
-            //	$mail->addAddress(trim($existuser->email), "User");
+                     
+            $mail->addAddress($emailRecipient,$firstName);
             
-            //foreach($recipients as $emailRecipient){
-                //$mail->addAddress($emailRecipient,$UM->getUserByEmail($emailRecipient)->firstName);
-                $mail->addAddress($emailRecipient,$firstName);
-            //}
             $mail->isHTML(true);
             $mail->Subject = $subject ;
             $mail->Body = $message ;

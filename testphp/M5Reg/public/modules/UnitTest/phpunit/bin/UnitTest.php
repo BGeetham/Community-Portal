@@ -6,11 +6,18 @@ class UnitTest extends PHPUnit_Framework_TestCase
     public function test__construct()
     {
        
-       // $this->assertEquals('HelloWorld', 'HelloWorld');
-        
         $hw = new MassEmailUnitTest();
-        $string = $hw->sendMail();
-        $this->assertEquals('true', $string);
+        $receipents=array("seenuboorla@gmail.com","mehergeetha@gmail.com");
+        $arrlength=count($receipents);
+        
+        for($x=0;$x<$arrlength;$x++)
+        {
+            $string = $hw->sendMail($receipents[$x]);
+            $this->assertEquals('true', $string);
+           
+        }
+       
+
         
     }
 }
